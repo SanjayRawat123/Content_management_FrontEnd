@@ -1,0 +1,48 @@
+<mat-card>
+    <h1>Add new Content</h1>
+  <!-- {{category|json}}-->
+    <mat-card-content>
+       <div class="bootstrap-warapper">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form (ngSubmit)="formSubmit()">
+                       
+                    <mat-form-field class="W" appearance="outline">
+                         <mat-label>Title</mat-label>
+                         <input type="text"
+                           [(ngModel)]="content.title"
+                          name="title"
+                         matInput placeholder="enter here Title">
+                        </mat-form-field>
+                                  
+                        <mat-form-field class="W" appearance="outline">
+                            <mat-label>Description</mat-label>
+                            <textarea 
+                             name="Discription"
+                            matInput placeholder="enter here description"
+                            [(ngModel)]="content.description"
+                            rows="15"
+                            ></textarea>
+
+                           </mat-form-field>
+                           <div class="container text-center"  >
+
+                            
+        
+                             <button  type="submit" mat-raised-button color="primary">Add</button>
+         
+                             
+         
+                           </div>
+                       
+        
+        
+                     </form>
+        
+            </div>
+        </div>
+       </div>
+
+    </mat-card-content>
+
+</mat-card>
