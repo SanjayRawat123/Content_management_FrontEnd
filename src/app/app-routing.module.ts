@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
+import { AddCategoryComponent } from './pages/admin/edit-content/add-category.component';
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
-import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
+import { ViewCategoriesComponent } from './pages/admin/view-content/view-categories.component';
+import { ViewQuizzesComponent } from './pages/admin/add-content/view-quizzes.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 
 
@@ -45,15 +45,15 @@ children:[
     component:ProfileComponent,
   },
   {
-    path:"categories",
+    path:"contents",
     component:ViewCategoriesComponent
   },
   {
-    path:"add-category",
+    path:"add-content/:postId",
     component:AddCategoryComponent
   },
   {
-    path:"view-quizzes",
+    path:"view-contents",
     component:ViewQuizzesComponent
   }
  

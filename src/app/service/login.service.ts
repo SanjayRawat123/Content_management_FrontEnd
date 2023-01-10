@@ -1,7 +1,7 @@
 import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -81,7 +81,7 @@ public setUser(user:any){
   localStorage.setItem("user",JSON.stringify(user));
 }
 
-//ger user 
+//get user 
 public getUser(){
 
 let userStr= localStorage.getItem("user");
@@ -97,22 +97,50 @@ if (userStr!=null){
 
 public userRole(){
   let user =this.getUser()
+  console.log(user.username ,user.username);
+
   return user.authorities[0].authority;
 }
 
 //get username
-
-public username(){
-  let userStr = this.getUser()
-       
-return userStr.userName;
-
+public userName(){
+  let user = this.getUser()
+  return user.username;
 }
 
+//Add content for current login user
+postContent(content:any){
+ 
+   ////content/{email}
+  return this.http.put(this.baseUrl+"/content/"+this.userName(),content)
+}
+
+//get all content for current user
+public contents(){
+  return this.http.get(this.baseUrl+"/content/allContent/"+this.userName())
+}
+
+//detele content
 
 
+deletePost(postId:any){
+ 
+   ///content/delete/{postId}/{username}
+  return this.http.delete(this.baseUrl+"/content/delete/"+postId+"/"+this.userName())
+}
 
+//Edit content
+editPost(content:any){
+ 
+   ///content/updateContent/{username}
+  return this.http.put(this.baseUrl+"/content/updateContent/"+this.userName(),content)
+}
 
+//get specific content {id}
+getSpecificContent(postId:any){
 
+   
+  return this.http.get(this.baseUrl+"/content/contentByPost/"+this.userName()+"/"+postId)
+}
 
 }

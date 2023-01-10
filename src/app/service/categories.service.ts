@@ -14,9 +14,9 @@ export class CategoriesService {
   
   //Load all The content
 
-  public contents(){
-    return this.http.get("http://localhost:9998/content/contents")
-  }
+  // public contents(){
+  //   return this.http.get("http://localhost:9998/content/contents")
+  // }
   //Add new  content
   public addContent(content:any){
     
@@ -32,15 +32,6 @@ export class CategoriesService {
 
 
 //Add content for login user
-postContent(content:any){
-  let httpHeaders=new HttpHeaders({
-    'Authorization' : 'Bearer' +localStorage.getItem('jwt')
-   });
-
-   let requestToken={headers : httpHeaders}
-   ////content/{email}
-  return this.http.put(this.baseUrl+"/content/"+localStorage.getItem('userame'),content,requestToken)
-}
 
 }
 

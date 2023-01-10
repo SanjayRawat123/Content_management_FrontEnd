@@ -29,12 +29,12 @@ export class SignComponent implements OnInit {
   ngOnInit(): void {
   }
   signForm=new FormGroup({
-    username:new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z0-9]+$")]),
-    password:new FormControl('', [Validators.required,Validators.maxLength(6)]),
+    username:new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z0-9]+$"), Validators.minLength(4)]),
+    password:new FormControl('', [Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)]),
     lastName: new FormControl('', [Validators.required,Validators.pattern("[A-Za-z]+")]),
     firstName:new FormControl('', [Validators.required,Validators.pattern("[A-Za-z]+")]),
-    email :new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-    phone:new FormControl('', [Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+    email :new FormControl('', [Validators.required,Validators.pattern('^[A-Za-z0-9._]{3,}@[a-z0-9.-]+\.[a-z]{2,4}$')]),
+    phone:new FormControl('', [Validators.required,Validators.pattern("(0|91)?[6-9][0-9]{9}")]),
 
 
 })
@@ -96,7 +96,7 @@ return this.signForm.get('phone')
       title: 'Success',
       text: 'You Are Registered',
       icon: 'success',
-      confirmButtonText: 'Cool'
+      confirmButtonText: 'OK'
     })
  
   },

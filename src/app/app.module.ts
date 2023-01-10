@@ -32,9 +32,9 @@ import {MatListModule} from '@angular/material/list';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import {MatTableModule} from '@angular/material/table';
-import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
-import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
-import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
+import { ViewCategoriesComponent } from './pages/admin/view-content/view-categories.component';
+import { AddCategoryComponent } from './pages/admin/edit-content/add-category.component';
+import { ViewQuizzesComponent } from './pages/admin/add-content/view-quizzes.component';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [

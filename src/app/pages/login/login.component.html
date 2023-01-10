@@ -9,34 +9,41 @@
                     <img src="../../../assets/41739418.jpg"  style="height: 100px ; " alt="img">
                  
                 </div>
-                <h1 class="text-center">login pages !!</h1>
+                <h1 class="text-center">login pages </h1>
 
-                {{loginData| json}}
+               <!--{{loginData| json}}-->
 
                 <!--form-->
-                <form (ngSubmit)="formSubmit()">
+                <form [formGroup]="loginForm" (ngSubmit)="formSubmit()">
                        
                <mat-form-field class="full-width" appearance="outline">
                     <mat-label>User Name</mat-label>
-                    <input [(ngModel)]="loginData.userName"
+                    <input [(ngModel)]="loginData.userName" formControlName="username"
                      name="username"
                     matInput placeholder="enter here UserName">
                     <mat-hint>Valid User Name</mat-hint>
 
-                      </mat-form-field>
+                      </mat-form-field><br>
+                      <small style="color: red;" *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+                        Username is required,and Only latters and numbers are  allowed</small>
                              
                 <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input [(ngModel)]="loginData.password" type="password"
+                    <input [(ngModel)]="loginData.password" type="password" formControlName="password"
                      name="password"
                     matInput placeholder="Enter here password">
-                    <mat-hint></mat-hint>
-
-                      </mat-form-field>
+                  
+                </mat-form-field><br>
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="alert alert-danger d2">
+                    <div *ngIf="password?.errors?.['required']">
+                        password is required.
+                    </div>
+                    </div>
+               
 
                       <div class="container text-center"  >
 
-                        <button type="submit" mat-raised-button color="primary">login</button>
+                        <button type="submit" [disabled]="loginForm.invalid" mat-raised-button color="primary">login</button>
     
                         <button style="margin-left: 20px;" mat-raised-button color="accent">Clear</button>
     

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login.service';
@@ -16,6 +17,26 @@ export class LoginComponent implements OnInit {
 
 
   }
+
+  loginForm=new FormGroup({
+    username:new FormControl('', [Validators.required]),
+    password:new FormControl('', [Validators.required])
+    
+   
+
+})
+
+
+
+
+get username(){
+  return this.loginForm.get('username');
+  }
+  
+   get password(){
+   return this .loginForm.get('password');
+   }
+
 
   constructor(private snack:MatSnackBar, private login:LoginService,private router:Router) { }
 
@@ -48,7 +69,11 @@ this.login.generateToken(this.loginData).subscribe(
 
 (data:any)=>{
   alert("success");
+
+  console.log("success");
   console.log(data);
+
+  
 
 //login......
 
@@ -59,8 +84,9 @@ this.login.getCurrenUser().subscribe(
 
 this.login.setUser(user);
 
-alert( this.login.username());
+//alert( this.login.username(d));
 console.log(user);
+
 //redirect---Admin: admin-dashboard
 //redirect...Normal:normal dashboard
 

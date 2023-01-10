@@ -8,8 +8,8 @@
              <!--logo --> 
               <div class="container text-center">
                   <img src="../../../assets/41739418.jpg"  style="height: 100px ; " alt="img">
-                  <h1>Exam Registration !!</h1>
-        <p>{{user|json}}</p>             
+                  <h1>Registration </h1>
+      <!--  <p>{{user|json}}</p>-->             
               </div>
 
                <!--Form Structurs-->
@@ -19,7 +19,7 @@
               <mat-form-field class="full-with" appearance="outline">
                   <mat-label>User Name</mat-label>
                   <input type="text" [(ngModel)]="user.username" name="username" formControlName="username"
-                  matInput placeholder="enter here UserName">
+                  matInput placeholder="enter here more then 4 letter UserName">
                 <mat-hint style="color: crimson;"  >User name must be unique</mat-hint>
               </mat-form-field><br>
           <small style="color: red;" *ngIf="username?.invalid && (username?.dirty || username?.touched)">
@@ -30,15 +30,18 @@
               <mat-form-field class="full-with" appearance="fill">
                   <mat-label> User Password</mat-label>
                   <input  [(ngModel)]="user.password" name="password"  formControlName="password"
-                   type="password" matInput placeholder="enter here 6 digit Password">
+                   type="password" matInput placeholder="enter here Password">
               </mat-form-field>
               <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="alert alert-danger d2">
                 <div *ngIf="password?.errors?.['required']">
                     password is required.
                 </div>
-                <div *ngIf="password?.errors?.['6']">
-                  password lenght should be 6 digit
-              </div>
+                <div *ngIf="password?.errors?.['pattern']">
+                  Password should have min 8 letter password, with at least a symbol, upper and lower case letters
+            and a number.
+                </div>
+             
+
             </div>
 
                 <!--First Name  Filed-->
@@ -62,7 +65,7 @@
                 <!--Emaile Field-->
               <mat-form-field  class="full-with" appearance="fill">
                   <mat-label>Email-Id</mat-label>
-                  <input  required [(ngModel)]="user.email" name="email" formControlName="email"
+                  <input type="email" required [(ngModel)]="user.email" name="email" formControlName="email"
                   matInput placeholder="enter here email">
               </mat-form-field>
               
@@ -70,12 +73,12 @@
                 <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="alert alert-danger d2">
                   <div *ngIf="email?.errors?.['required']">
                       email is required
+                  </div>   
                       <div *ngIf="email?.errors?.['pattern']">
                         Please provide a valid email address
                       </div>
-                  </div>
+                 
                 </div>
-
                <!--Phone Number-->   
               <mat-form-field  class="full-with" appearance="outline">
                   <mat-label> Phone Number</mat-label>
@@ -88,7 +91,7 @@
                         phone number is required.
                     </div>
                     <div *ngIf="phone?.errors?.['pattern']">
-                      Please, Enter 10 digit Mobile Number.
+                      Please, Enter 10 digit Mobile Number.number should start with 7 8 9
                       </div>
                 </div> 
 

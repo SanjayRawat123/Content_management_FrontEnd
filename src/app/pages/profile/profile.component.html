@@ -1,6 +1,6 @@
 <mat-card *ngIf="user">
     <h3>Welcome to Profile</h3>
-    {{user|json}}
+    <!--{{user|json}}-->
     <mat-card-content>
            <div class="bootstrap-wrapper">
              <div class="container">
@@ -38,10 +38,7 @@
                                 <td>{{user.enabled?"Active":"NoteActice"}}</td>
                             </tr>
                             
-                            <tr>
-                                <td>contentList</td>
-                                <td>{{user.contentList}}</td>
-                            </tr>
+                           
                         </table>
                     </div>
                 </div>

@@ -1,0 +1,42 @@
+<mat-card>
+    <h1>All Contents</h1>
+    <mat-list>
+      
+
+    <mat-list-item *ngFor="let c of contents">
+
+    
+
+        <mat-icon mat-list-icon>content</mat-icon>
+        <div mat-line>PostId:{{c.postId}}</div>
+
+        <div mat-line>PostId:{{ c.title }}</div>
+
+
+      <div mat-line>Content:{{c.content}}</div>
+
+      <div mat-line>PostedOn:{{c.postedOn}}</div>
+      <div mat-line>PosedBy:{{c.postedBy}}</div>
+        
+        <!--<mat-divider></mat-divider>-->
+        <mat-card-actions>
+           
+              <button routerLink="/admin/add-content/{{ c.postId }}" mat-flat-button color="accent">
+                Update
+              </button>
+               
+            
+              <button color="warn" mat-flat-button (click)="deleteContent( c.postId)">
+               Delete
+              </button>
+            
+          </mat-card-actions>
+
+    </mat-list-item>
+
+    </mat-list>
+
+    <div class="container text-center mt20">
+        <button routerLink="/admin/view-contents" mat-raised-button color="accent">Add New Content</button>
+    </div>
+</mat-card>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CategoriesService } from 'src/app/service/categories.service';
+import { ActivatedRoute } from '@angular/router';
+
+import { LoginService } from 'src/app/service/login.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,14 +14,29 @@ export class AddCategoryComponent implements OnInit {
 
 
   content:any={
-    title:'',
-    description:'',
+    
+   title:'',
+   content:' ',
+   postedOn:'',
+   postedBy:''
 
   }
 
-  constructor(private _content:CategoriesService,private snack:MatSnackBar) { }
+  constructor(private _content:LoginService,private snack:MatSnackBar,private activatedRoute: ActivatedRoute) { }
+
+  postId=0
 
   ngOnInit(): void {
+
+   this.postId =this.activatedRoute.snapshot.params['postId'];
+
+
+   this._content.getSpecificContent(this.postId).subscribe(data => {
+    console.log(data);
+    this.content = data;
+  })
+
+  // alert(this.postId);
   }
   formSubmit(){
     if(this.content.title.trim()==''|| this.content.title==null){
@@ -31,17 +48,17 @@ export class AddCategoryComponent implements OnInit {
         return;
     }
 
-    this._content.addContent(this.content).subscribe(
+    this._content.editPost(this.content).subscribe(
      
 (data:any): void=>{
-  Swal.fire('Success!!','content is add successfuly','success');
+  Swal.fire('Success!!','content is Updated successfuly','success');
 },
 
 (error)=>{
 
 console.log("error");
 
-  Swal.fire('error!!','content is  not add successfuly','error');
+  Swal.fire('error!!','content is  not updated  ','error');
 
 
 
